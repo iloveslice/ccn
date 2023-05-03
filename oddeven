@@ -1,0 +1,29 @@
+binary_num1 = input('enter 8 bits: ');
+binary_num = num2str(binary_num1);
+num_ones = sum(binary_num == '1');
+if (mod(num_ones, 2) == 0)
+parity_bit = '0';
+else
+parity_bit = '1';
+end
+transmitted_code = [binary_num, parity_bit];
+disp('data transmitted is')
+disp(transmitted_code);
+received_data = transmitted_code;
+new_num_ones = sum(received_data == '1');
+disp('received data with no errors')
+disp(received_data)
+if(mod(new_num_ones, 2) == received_data(end) )
+disp('no error present')
+end
+if(received_data(3) == '1')
+received_data(3) = '0';
+else
+received_data(3) = '1';
+end
+disp('received data after changing third bit')
+disp(received_data)
+error_num_ones = sum(received_data == '1');
+if(mod(error_num_ones, 2) ~= received_data(end) )
+disp('error present after changing bits')
+end
